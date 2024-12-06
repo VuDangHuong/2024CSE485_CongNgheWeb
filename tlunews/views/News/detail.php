@@ -7,90 +7,90 @@
     <title>Chi tiết tin tức</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
-        }
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+    }
 
-        header {
-            background-color: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
-        }
+    header {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e0e0e0;
+    }
 
-        .navbar-brand {
-            color: #007bff !important;
-            font-weight: bold;
-        }
+    .navbar-brand {
+        color: #007bff !important;
+        font-weight: bold;
+    }
 
-        .navbar-nav .nav-link {
-            color: #495057 !important;
-        }
+    .navbar-nav .nav-link {
+        color: #495057 !important;
+    }
 
-        .navbar-nav .nav-link:hover {
-            color: #007bff !important;
-        }
+    .navbar-nav .nav-link:hover {
+        color: #007bff !important;
+    }
 
-        .container {
-            margin-top: 40px;
-        }
+    .container {
+        margin-top: 40px;
+    }
 
-        .card {
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    .card {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        .card-header {
-            background-color: #007bff;
-            color: #ffffff;
-            font-size: 1.5rem;
-            text-align: center;
-            padding: 10px 0;
-        }
+    .card-header {
+        background-color: #007bff;
+        color: #ffffff;
+        font-size: 1.5rem;
+        text-align: center;
+        padding: 10px 0;
+    }
 
-        .card-body {
-            padding: 20px;
-        }
+    .card-body {
+        padding: 20px;
+    }
 
-        .card-body h3 {
-            font-size: 2rem;
-            color: #343a40;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+    .card-body h3 {
+        font-size: 2rem;
+        color: #343a40;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
 
-        .card-body p {
-            font-size: 1.1rem;
-            color: #6c757d;
-        }
+    .card-body p {
+        font-size: 1.1rem;
+        color: #6c757d;
+    }
 
-        .card-body img {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
+    .card-body img {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
 
-        .card-body img.no-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            background: #e0e0e0;
-            display: block;
-        }
+    .card-body img.no-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        background: #e0e0e0;
+        display: block;
+    }
 
-        footer {
-            background-color: #343a40;
-            color: #ffffff;
-            padding: 20px 0;
-        }
+    footer {
+        background-color: #343a40;
+        color: #ffffff;
+        padding: 20px 0;
+    }
 
-        footer p {
-            margin: 0;
-            text-align: center;
-        }
+    footer p {
+        margin: 0;
+        text-align: center;
+    }
     </style>
 </head>
 
@@ -129,9 +129,9 @@
                     <p><strong>Ngày đăng:</strong> <?= htmlspecialchars($news['created_at']) ?></p>
 
                     <?php if (!empty($news['image'])): ?>
-                        <img src="<?= htmlspecialchars($news['image']) ?>" alt="<?= htmlspecialchars($news['title']) ?>">
+                    <img src="<?= htmlspecialchars($news['image']) ?>" alt="<?= htmlspecialchars($news['title']) ?>">
                     <?php else: ?>
-                        <img class="no-image" alt="Không có hình ảnh">
+                    <img class="no-image" alt="Không có hình ảnh">
                     <?php endif; ?>
 
                     <p><?= nl2br(htmlspecialchars($news['content'])) ?></p>
