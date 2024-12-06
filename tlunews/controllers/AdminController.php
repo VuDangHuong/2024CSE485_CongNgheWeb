@@ -1,21 +1,65 @@
 <?php
-require_once __DIR__ . '/../configs/database.php';
-
-class Category
+require_once __DIR__ . '/../models/User.php';
+class AdminController
 {
-    private $conn;
-
-    public function __construct()
+    public function index()
     {
-        $db = new Database();
-        $this->conn = $db->getConnection();
+        include __DIR__ . '/../views/Admin/dashboard.php';
     }
-
-    public function getAllCategories()
+    //Login
+    public function login()
     {
-        $sql = "SELECT id, name FROM categories ORDER BY name ASC";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        include __DIR__ . '/../views/Admin/login.php';
+    }
+    public function handleLogin()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_POST['signIn']) && $_POST['signIn'] === 'login') {
+                if (isset($_POST['username'], $_POST['password'])) {
+                    $username = $_POST['username'];
+                    $password = $_POST['password'];
+                    $result = User::login($username, $password);
+                    if ($result) {
+                        //Đăng nhập thành công,lưu thông tin người dùng vào sesion
+                        session_start();
+                        $_SESSION['user'] = $result['username']; //Lưu thông tin người dùng vào session
+                        // var_dump($_SESSION['user']);
+                        // print_r($_SESSION['user']);
+                        //Kiểm tra user
+                        if ($result['role'] == 1) //Quản trị viên
+                            header("Location: index.php?controller=Admin&action=index");
+                        else header("Location: index.php?controller=Home&action=index");
+                    } else echo "Invalid username or password";
+                }
+            }
+        }
+    }
+    //Log out
+    public static function logout()
+    {
+        session_start(); //Khởi tạo session=>khởi động trước khi thực hiện làm việc với session
+        session_destroy();
+        header("Location: index.php?controller=Home&action=index");
+    }
+    //Create
+    public function register()
+    {
+        include __DIR__ . '/../views/Admin/register.php';
+    }
+    public function handleRegister()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_POST['register']) && $_POST['register'] === 'register') {
+                if (isset($_POST['username'], $_POST['password'], $_POST['role'])) {
+                    $username = $_POST['username'];
+                    $password = $_POST['password'];
+                    $role = $_POST['role'];
+                    $result = User::create($username, $password, $role);
+                    if ($result)
+                        header("Location: index.php?controller=Admin&action=login");
+                    else echo "Register failed";
+                }
+            }
+        }
     }
 }

@@ -127,7 +127,7 @@ $isLogin = isset($_SESSION['user']);//Kiểm tra người dùng đăng nhập ch
                         </li>
                         <?php else:?>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?controller=Admin&action=login">Đăng nhập</a>
+                        <a class="nav-link" href="index.php?controller=Admin&action=login">Đăng nhập</a>
                         </li>
                         <?php endif;?>
                     </ul>
